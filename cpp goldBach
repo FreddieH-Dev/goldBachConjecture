@@ -1,0 +1,71 @@
+#include <iostream>
+#include <cmath>
+#include <vector>
+using namespace std;
+
+bool isPrime(float num, vector<float> knownPrimes) {        //finds square number of number needed checking, 
+
+    float squareRoot = floor(sqrt(num));//stores square root of number rounded to lowest int
+    //cout << "sqrt of " << num << " = " << squareRoot << endl;
+
+    for (int divisor = 0; divisor < knownPrimes.size(); divisor++) {    //index position for each number in knownPrimes 
+        if (knownPrimes[divisor] <= squareRoot) {       //closet prime below square root
+            float answer = num / knownPrimes[divisor];  //check if it has factors
+            //cout << num << " / " << knownPrimes[divisor] << " = " << answer << endl;
+            if (floor(answer) == answer) {  //if whole number, has factor
+                //cout << num << " is not prime" << endl;
+                return false;
+            }
+        }
+        else {
+            break;//ignores check for prime
+        }
+    }
+    //cout << num << " is prime" << endl;
+    return true;
+}
+
+int main() {
+    vector<float> knownPrimes = { 2.0, 3.0 };
+    int max = 1;
+    cout << "What even number would you like to check up to for goldbach conjecture:   ";
+    cin >> max;
+    while ((max % 2) != 0)
+    {
+        cout << "Input an even number:   ";
+        cin >> max;
+    }
+
+    for (float num = 3; num < max; num = num + 2) {     //finds all primes up until max at the start
+        bool result = isPrime(num, knownPrimes);
+        if (result == true) {
+            knownPrimes.push_back(num);
+        }
+    }
+
+    cout << "PRIMES FOUND" << endl;
+
+    //for (int i = 0; i < knownPrimes.size(); i++) {
+    //    cout << knownPrimes[i] << ", ";
+    //}
+    //cout << endl;
+
+    
+    for (int i = 2; i < max; i = i + 2) {       // all even numbers until max
+        bool found = false;
+        for (int a = 0; a < knownPrimes.size() && found == false; a++) {     // goes through primes, start to end
+            for (int b = 0; b < knownPrimes.size() && found == false; b++) {   // goes through primes end to start
+                if (knownPrimes[a] + knownPrimes[b] == i) { //if equal to the even number
+                    cout << knownPrimes[a] << "+" << knownPrimes[b] << "=" << i << endl;
+                    found = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    cout << endl << "done";
+
+
+    return 0;
+}
