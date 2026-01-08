@@ -1,7 +1,0 @@
-<Solution>
-  <Configurations>
-    <Platform Name="x64" />
-    <Platform Name="x86" />
-  </Configurations>
-  <Project Path="goldbachConjecture/goldbachConjecture.vcxproj" Id="b57f2de3-0699-49b9-bfd9-25ffa3ba242b" />
-</Solution>
