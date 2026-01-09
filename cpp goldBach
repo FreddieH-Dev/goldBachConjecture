@@ -26,7 +26,7 @@ bool isPrime(float num, vector<float> knownPrimes) {        //finds square numbe
 }
 
 int main() {
-    vector<float> knownPrimes = { 2.0, 3.0 };
+    vector<float> knownPrimes = {3.0 };
     int max = 1;
     cout << "What even number would you like to check up to for goldbach conjecture:   ";
     cin >> max;
